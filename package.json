@@ -36,8 +36,8 @@
   },
   "homepage": "https://github.com/derrickpelletier/react-loading-overlay#readme",
   "dependencies": {
-    "prop-types": "^15.5.10",
-    "react-transition-group": "^1.2.1",
+    "prop-types": "^15.6.2",
+    "react-transition-group": "2.x",
     "styled-components": "^2.1.2"
   },
   "devDependencies": {

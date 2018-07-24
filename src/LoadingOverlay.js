@@ -7,7 +7,7 @@
 
 import React, { Children } from 'react'
 import PropTypes from 'prop-types'
-import { CSSTransitionGroup } from 'react-transition-group'
+import { TransitionGroup, CSSTransition} from 'react-transition-group'
 import styled, { keyframes } from 'styled-components'
 
 const FirstChild = props => Children.toArray(props.children)[0] || null
@@ -27,19 +27,19 @@ class LoadingOverlayWrapper extends React.Component {
       spinner
     } = this.props
 
-    let loadNode = active && <LoadingOverlay key='the_dimmer' {...this.props} />
+    let loadNode = active && <CSSTransition
+      key={i}
+      classNames="_loading-overlay-transition"
+      timeout={{ enter: 500, exit: 500, appear:500 }}>
+      <LoadingOverlay key='the_dimmer' {...this.props} />
+    </CSSTransition>
     if (animate || spinner) {
       loadNode = (
-        <CSSTransitionGroup
-          transitionName='_loading-overlay-transition'
-          transitionAppear
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={500}
-          transitionAppearTimeout={500}
+        <TransitionGroup
           component={FirstChild}
           >
           {loadNode}
-        </CSSTransitionGroup>
+        </TransitionGroup>
       )
     }
 
